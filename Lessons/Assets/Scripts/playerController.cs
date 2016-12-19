@@ -5,6 +5,8 @@ using System.Security.Cryptography.X509Certificates;
 
 public class playerController : MonoBehaviour {
 
+	public float speed;
+
 	private Rigidbody ball;
 
 	void Start () 
@@ -19,6 +21,6 @@ public class playerController : MonoBehaviour {
 
 		Vector3 movement = new Vector3 (moveHorizantal, 0.0f, moveVertical);
 
-		ball.AddForce (movement);
+		ball.AddForce (movement * speed);
 	}
 }

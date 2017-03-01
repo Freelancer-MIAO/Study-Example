@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics;
 
 public class playerController : MonoBehaviour {
 
 	public float speed;
+	public Text countText;
+	public Text winText;
 
 	private Rigidbody ball;
+	private int score;
 
 	void Start () 
 	{
 		ball = GetComponent<Rigidbody>();
+		score = 0;
+		SetScore ();
+		winText.text = "";
 	}
 
 	void FixedUpdate () 
@@ -28,6 +36,16 @@ public class playerController : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Pick Up")) 
 		{
 			other.gameObject.SetActive (false);
+			score = score + 1;
+			SetScore ();
 		}
+		if (score >= 9) 
+		{
+			winText.text = "You win the game!";
+		}
+	}
+	void SetScore ()
+	{
+		countText.text = "SCORE: " + score.ToString ();
 	}
 }
